@@ -1,0 +1,53 @@
+nextflow_process {
+
+    name "Test Process PREPARE_ID"
+    script "modules/prepare-id.nf"
+    process "PREPARE_ID"
+
+    test("Produces correct ID using 'prepare_id_method = prepare-id-split-all'") {
+
+        when {
+            params {
+                prepare_id_method = "prepare-id-split-all"
+            }
+            process {
+                """
+                input[0] = Channel.from("tests/data/empty-file-with-dash.fastq", "tests/data/empty_file_with_underscore.fastq")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out[0][0][0] == "empty" }, 
+                { assert process.out[0][1][0] == "empty" }
+            )
+        }
+
+    }
+
+    test("Produces correct ID using 'prepare_id_method = prepare-id-split-path'") {
+
+        when {
+            params {
+                prepare_id_method = "prepare-id-split-path"
+            }
+            process {
+                """
+                input[0] = Channel.from("tests/data/empty-file-with-dash.fastq", "tests/data/empty_file_with_underscore.fastq")
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out[0][0][0] == "empty-file-with-dash" }, 
+                { assert process.out[0][1][0] == "empty_file_with_underscore" }
+            )
+        }
+
+    }
+
+}
