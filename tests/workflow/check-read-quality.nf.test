@@ -1,0 +1,27 @@
+nextflow_workflow {
+
+    name "Test Subworkflow CHECK_READ_QUALITY"
+    script "subworkflows/check-read-quality.nf"
+    workflow "CHECK_READ_QUALITY"
+
+    test("Terminates with no errors") {
+
+        when {
+            params {
+
+            }
+            workflow {
+                """
+                input[0] = Channel.of(["SRR1697540", "${projectDir}/tests/data/SRR1697540.fastq"])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success }
+            )
+        }
+        
+    }
+}
