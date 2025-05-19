@@ -2,7 +2,7 @@
 
 
 // Default module imports
-include { ### } from '../modules/###'
+include { PREPARE_ID } from '../modules/prepare-id'
 
 
 // Pipeline workflow
@@ -10,4 +10,7 @@ workflow SHOTGUN_METAGENOMICS {
     main:
         Channel.fromPath("./${params.data}/*.fastq")
             .set {ch_reads}
+
+        PREPARE_ID(ch_reads)
+            .set {ch_reads_with_id}
 }
