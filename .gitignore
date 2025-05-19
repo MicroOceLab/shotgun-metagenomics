@@ -3,5 +3,6 @@ work/
 data/
 results/
 .nextflow*
+.nf-test*
 .ipynb_checkpoints/
 .virtual_documents/
