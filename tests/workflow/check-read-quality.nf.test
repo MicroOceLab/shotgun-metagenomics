@@ -24,4 +24,28 @@ nextflow_workflow {
         }
         
     }
+
+    test("Produces output files with correct filenames") {
+
+        when {
+            params {
+
+            }
+            workflow {
+                """
+                input[0] = Channel.of(["SRR1697540", "${projectDir}/tests/data/SRR1697540.fastq"])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert new File("${workflow.out.fastqc_reports[0][1]}/SRR1697540_fastqc.html").exists() },
+                { assert new File("${workflow.out.fastqc_reports[0][1]}/SRR1697540_fastqc.zip").exists() },
+                { assert new File("${workflow.out.multiqc_report[0]}/multiqc_report.html").exists() }
+            )
+        }
+        
+    }
 }
