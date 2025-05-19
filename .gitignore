@@ -1,6 +1,6 @@
 # Nextflow related files and directories
 work/
-data/
+./data/
 results/
 .nextflow*
 .nf-test*
