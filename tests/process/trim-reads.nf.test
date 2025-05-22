@@ -1,0 +1,27 @@
+nextflow_process {
+
+    name "Test Process TRIM_READS"
+    script "modules/trim-reads.nf"
+    process "TRIM_READS"
+
+    test("Terminates with no errors") {
+
+        when {
+            params {
+
+            }
+            workflow {
+                """
+                input[0] = Channel.of(["SRR33661552", "${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success }
+            )
+        }
+
+    }
+}
