@@ -10,7 +10,7 @@ nextflow_process {
             params {
 
             }
-            workflow {
+            process {
                 """
                 input[0] = Channel.of(["SRR33661552", "${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
                 """
@@ -19,7 +19,7 @@ nextflow_process {
 
         then {
             assertAll(
-                { assert workflow.success }
+                { assert process.success }
             )
         }
 
