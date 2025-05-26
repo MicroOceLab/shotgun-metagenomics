@@ -25,7 +25,7 @@ nextflow_workflow {
         
     }
 
-    test("Produces output files with correct filenames") {
+    test("Produces output files with correct ID and filenames") {
 
         when {
             params {
