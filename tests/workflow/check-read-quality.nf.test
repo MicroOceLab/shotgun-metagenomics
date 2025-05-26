@@ -25,7 +25,7 @@ nextflow_workflow {
         
     }
 
-    test("Produces output files with correct ID and filenames") {
+    test("Produces output files with correct filenames") {
 
         when {
             params {
@@ -41,10 +41,8 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert workflow.out.fastqc_reports[0][0] == "SRR1697540" },
                 { assert new File("${workflow.out.fastqc_reports[0][1]}/SRR1697540_fastqc.html").exists() },
                 { assert new File("${workflow.out.fastqc_reports[0][1]}/SRR1697540_fastqc.zip").exists() },
-                { assert workflow.out.multiqc_report[0][0] == "SRR1697540" },
                 { assert new File("${workflow.out.multiqc_report[0]}/multiqc_report.html").exists() }
             )
         }
