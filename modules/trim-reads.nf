@@ -7,8 +7,8 @@ process TRIM_READS {
         tuple val(id), val(forward_reads), val(reverse_reads)
     
     output:
-        tuple eval("echo \${ID}"), path("${id}-trimmed-paired-forward-reads.fastq"), path("${id}-trimmed-paired-reverse-reads.fastq"), emit: paired_reads
-        tuple eval("echo \${ID}"), path("${id}-trimmed-unpaired-forward-reads.fastq"), path("${id}-trimmed-unpaired-reverse-reads.fastq"), emit: unpaired_reads
+        tuple val(id), path("${id}-trimmed-paired-forward-reads.fastq"), path("${id}-trimmed-paired-reverse-reads.fastq"), emit: paired_reads
+        tuple val(id), path("${id}-trimmed-unpaired-forward-reads.fastq"), path("${id}-trimmed-unpaired-reverse-reads.fastq"), emit: unpaired_reads
 
     script:
         """
