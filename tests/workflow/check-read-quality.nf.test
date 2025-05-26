@@ -41,10 +41,10 @@ nextflow_workflow {
         then {
             assertAll(
                 { assert workflow.success },
-                { assert process.out.fastqc_reports[0][0] == "SRR1697540" },
+                { assert workflow.out.fastqc_reports[0][0] == "SRR1697540" },
                 { assert new File("${workflow.out.fastqc_reports[0][1]}/SRR1697540_fastqc.html").exists() },
                 { assert new File("${workflow.out.fastqc_reports[0][1]}/SRR1697540_fastqc.zip").exists() },
-                { assert process.out.multiqc_report[0][0] == "SRR1697540" },
+                { assert workflow.out.multiqc_report[0][0] == "SRR1697540" },
                 { assert new File("${workflow.out.multiqc_report[0]}/multiqc_report.html").exists() }
             )
         }
