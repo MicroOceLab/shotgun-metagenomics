@@ -41,7 +41,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert new File("${process.out[0][0][0]}/scaffold.fasta").exists() }
+                { assert new File("${process.out[0][0]}/scaffold.fasta").exists() }
             )
         }
         
