@@ -12,7 +12,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of(["${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                input[0] = Channel.of(["${projectDir}/tests/data/SRR1297442_1.fastq", "${projectDir}/tests/data/SRR1297442_2.fastq"])
                 """
             }
         }
@@ -33,7 +33,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of(["${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                input[0] = Channel.of(["${projectDir}/tests/data/SRR1297442_1.fastq", "${projectDir}/tests/data/SRR1297442_2.fastq"])
                 """
             }
         }
