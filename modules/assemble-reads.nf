@@ -13,7 +13,7 @@ process ASSEMBLE_READS {
         """
         cat ${forward_reads} >> combined_forward.fastq
         cat ${forward_reads} >> combined_reverse.fastq
-        usr/local/bin/spades.py \
+        /usr/local/bin/spades.py \
             -1 combined_forward.fastq \
             -2 combined_reverse.fastq \
             -o metagenome-assembly
