@@ -1,0 +1,50 @@
+nextflow_process {
+
+    name "Test Process ASSEMBLE_READS"
+    script "modules/assemble-reads.nf"
+    process "ASSEMBLE_READS"
+
+    test("Terminates with no errors") {
+
+        when {
+            params {
+
+            }
+            process {
+                """
+                input[0] = Channel.of(["SRR33661552", "${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success }
+            )
+        }
+
+    }
+
+    test("Produces output files with correct ID and filenames") {
+
+        when {
+            params {
+
+            }
+            process {
+                """
+                input[0] = Channel.of(["SRR33661552", "${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert process.out[0][0][0] == "SRR33661552" },
+                { assert new File("${process.out[0][0][1]}/scaffold.fasta").exists() }
+            )
+        }
+        
+    }
+}
