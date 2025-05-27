@@ -25,7 +25,7 @@ nextflow_process {
 
     }
 
-    test("Produces output files with correct ID and filenames") {
+    test("Produces output files with correct filenames") {
 
         when {
             params {
