@@ -16,7 +16,7 @@ process ASSEMBLE_READS {
         /usr/local/bin/spades.py \
             -1 combined_forward.fastq \
             -2 combined_reverse.fastq \
-            -o metagenome-assembly \
+            -o \${PWD}/metagenome-assembly \
             --metaviral
         """
 }
