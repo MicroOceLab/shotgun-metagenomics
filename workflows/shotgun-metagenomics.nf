@@ -29,5 +29,12 @@ workflow SHOTGUN_METAGENOMICS {
             .join(ch_separated.reverse_reads))
             .set {ch_trimmed}
         
+        ASSEMBLE_READS(ch_trimmed.paired_reads
+            .map {reads -> reads[0]}
+            .reduce("") {reads_1, reads_2 -> "$reads_1 $reads_2"}
+            .combine(ch_trimmed.paired_reads
+            .map {reads -> reads[1]}
+            .reduce("") {reads_1, reads_2 -> "$reads_1 $reads_2"}))
+            .set {ch_metagenome_assembly}
         
 }
