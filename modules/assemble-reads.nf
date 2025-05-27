@@ -17,7 +17,7 @@ process ASSEMBLE_READS {
             -1 combined_forward.fastq \
             -2 combined_reverse.fastq \
             -o \${PWD}/metagenome-assembly \
-            --metaviral \
+            --meta \
             -t 12 \
             -m 32
         """
