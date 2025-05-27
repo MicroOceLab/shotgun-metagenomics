@@ -12,7 +12,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of(["SRR33661552", "${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                input[0] = Channel.of(["${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
                 """
             }
         }
@@ -33,7 +33,7 @@ nextflow_process {
             }
             process {
                 """
-                input[0] = Channel.of(["SRR33661552", "${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
+                input[0] = Channel.of(["${projectDir}/tests/data/SRR33661552_1.fastq", "${projectDir}/tests/data/SRR33661552_2.fastq"])
                 """
             }
         }
@@ -41,8 +41,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                { assert process.out[0][0][0] == "SRR33661552" },
-                { assert new File("${process.out[0][0][1]}/scaffold.fasta").exists() }
+                { assert new File("${process.out[0][0][0]}/scaffold.fasta").exists() }
             )
         }
         
